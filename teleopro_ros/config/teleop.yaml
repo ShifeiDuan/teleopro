@@ -1,0 +1,46 @@
+teleopro:
+  ros__parameters:
+    # Input device type:
+    #   pose  - device reports where it is (XR headset, mocap, leader arm)
+    #   twist - device reports how fast to move (SpaceMouse, joystick, keyboard)
+    input_type: pose
+
+    # [pose] TF published by the device: input_base_frame -> input_source_frame
+    input_base_frame: world          # fixed frame of the device
+    input_source_frame: right_wrist  # tracked point that drives the robot
+
+    # [twist] Topic the device publishes geometry_msgs/Twist on (an INPUT).
+    # Set it to your device driver's topic, e.g. /spacenav/twist or /cmd_vel.
+    twist_topic: /teleopro/twist
+    # Frame the twist is applied in:
+    #   base - robot_base_frame axes, direction does not change with the EE
+    #   tool - the EE's own axes, direction turns with the EE
+    twist_frame: base
+
+    # Robot: TF robot_base_frame -> robot_source_frame
+    robot_base_frame: base_link      # frame the target is expressed in
+    robot_source_frame: tool0        # EE to control; the target starts here on engage.
+                                     # NOTE: must match your controller's end effector link.
+
+    # Output. The target is always published as TF robot_base_frame -> teleop_target.
+    # pose_topic also publishes it as geometry_msgs/PoseStamped (an OUTPUT, for your
+    # controller): the pose robot_source_frame should move to, in robot_base_frame.
+    # "" publishes TF only, so the robot does not move.
+    pose_topic: ""
+
+    # Rotation from device axes to robot_base_frame axes (roll, pitch, yaw in rad).
+    # No translation: only relative motion is used, so position offsets cancel out.
+    align_rpy: [0.0, 0.0, 0.0]
+    translation_scale: 1.0       # robot motion = device motion * scale
+    rotation_scale: 1.0
+    max_lin_vel: 0.05            # target speed limit, m/s
+    max_ang_vel: 1.0             # target speed limit, rad/s
+    rate: 100.0                  # update rate, Hz
+
+    # Optional
+    # twist_stamped: false               # true if the device publishes TwistStamped
+    # target_frame: teleop_target        # output TF name; change when running several nodes
+    # dof_mask: [1, 1, 1, 1, 1, 1]       # x, y, z, roll, pitch, yaw in robot_base_frame; 0 locks
+    # workspace_min: [0.2, -0.5, 0.05]   # safety box for the target position, robot_base_frame
+    # workspace_max: [0.8, 0.5, 0.8]
+    # input_timeout: 0.2                 # s without input before the target holds

@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use teleopro in your research, please cite the paper below."
+title: "teleopro"
+abstract: "Device- and robot-agnostic teleoperation: maps the motion of any input device onto a target pose for any robot."
+type: software
+authors:
+  - family-names: Duan
+    given-names: Shifei
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/sdua078/teleopro"
+keywords:
+  - teleoperation
+  - robotics
+  - ros2
+  - mixed reality
+preferred-citation:
+  type: article
+  title: "Scalable, Intuitive, Mixed Reality-Based Semi-Autonomous Robotic Telemanipulation for the Execution of a Fine-Grained Bimanual Task"
+  authors:
+    - family-names: Duan
+      given-names: Shifei
+    - family-names: Wang
+      given-names: Zhe
+    - family-names: De Pace
+      given-names: Francesco
+    - family-names: Liarokapis
+      given-names: Minas
+  journal: "arXiv preprint arXiv:2610.25006"
+  year: 2026
+  url: "https://arxiv.org/abs/2610.25006"

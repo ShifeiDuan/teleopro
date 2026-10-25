@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 290" width="1170" height="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.5; }
+    .core { fill: #ddf4ff; stroke: #0969da; stroke-width: 2; }
+    .title { fill: #1f2328; font-size: 16px; font-weight: 600; }
+    .core-title { fill: #0969da; font-size: 18px; font-weight: 700; }
+    .text { fill: #1f2328; font-size: 12.5px; }
+    .muted { fill: #59636e; font-size: 12px; }
+    .mono { fill: #1f2328; font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, 'DejaVu Sans Mono', monospace; }
+    .mono-muted { fill: #59636e; font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, 'DejaVu Sans Mono', monospace; }
+    .edge { stroke: #59636e; stroke-width: 1.6; fill: none; }
+    .edge-out { stroke: #0969da; stroke-width: 2; fill: none; }
+    .head { fill: #59636e; }
+    .head-out { fill: #0969da; }
+    .label { fill: #59636e; font-size: 11.5px; }
+    .label-out { fill: #0969da; font-size: 12px; font-weight: 600; font-family: ui-monospace, SFMono-Regular, Menlo, 'DejaVu Sans Mono', monospace; }
+    @media (prefers-color-scheme: dark) {
+      .box { fill: #161b22; stroke: #3d444d; }
+      .core { fill: #0d2a4d; stroke: #4493f8; }
+      .title, .text, .mono { fill: #e6edf3; }
+      .core-title, .label-out { fill: #4493f8; }
+      .muted, .mono-muted, .label { fill: #9198a1; }
+      .edge { stroke: #9198a1; }
+      .edge-out { stroke: #4493f8; }
+      .head { fill: #9198a1; }
+      .head-out { fill: #4493f8; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="head" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+    <marker id="arrow-out" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="head-out" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <!-- Input device -->
+  <rect class="box" x="20" y="35" width="290" height="115" rx="10"/>
+  <text class="title" x="165" y="64" text-anchor="middle">Input device</text>
+  <text class="muted" x="165" y="85" text-anchor="middle">XR headset · mocap · SpaceMouse</text>
+  <text class="mono" x="165" y="111" text-anchor="middle">input_base_frame → input_source_frame</text>
+  <text class="mono-muted" x="165" y="130" text-anchor="middle">e.g. world → right_wrist</text>
+
+  <!-- teleopro -->
+  <rect class="core" x="400" y="35" width="210" height="115" rx="10"/>
+  <text class="core-title" x="505" y="65" text-anchor="middle">teleopro</text>
+  <text class="text" x="505" y="88" text-anchor="middle">engage / clutch</text>
+  <text class="text" x="505" y="107" text-anchor="middle">direction · scaling</text>
+  <text class="text" x="505" y="126" text-anchor="middle">speed &amp; workspace limits</text>
+
+  <!-- Controller -->
+  <rect class="box" x="750" y="35" width="180" height="115" rx="10"/>
+  <text class="title" x="840" y="72" text-anchor="middle">Your controller</text>
+  <text class="text" x="840" y="96" text-anchor="middle">IK · Cartesian · servo</text>
+  <text class="muted" x="840" y="117" text-anchor="middle">not part of teleopro</text>
+
+  <!-- Robot arm -->
+  <rect class="box" x="1010" y="35" width="140" height="115" rx="10"/>
+  <text class="title" x="1080" y="84" text-anchor="middle">Robot arm</text>
+  <text class="muted" x="1080" y="106" text-anchor="middle">any arm</text>
+
+  <!-- Device to teleopro -->
+  <line class="edge" x1="312" y1="92" x2="396" y2="92" marker-end="url(#arrow)"/>
+  <text class="label" x="354" y="82" text-anchor="middle">TF / Twist</text>
+
+  <!-- teleopro to controller -->
+  <line class="edge-out" x1="612" y1="92" x2="746" y2="92" marker-end="url(#arrow-out)"/>
+  <text class="label-out" x="680" y="82" text-anchor="middle">teleop_target</text>
+  <text class="label" x="680" y="112" text-anchor="middle">TF / PoseStamped</text>
+
+  <!-- controller to robot -->
+  <line class="edge" x1="932" y1="92" x2="1006" y2="92" marker-end="url(#arrow)"/>
+  <text class="label" x="969" y="82" text-anchor="middle">commands</text>
+
+  <!-- Robot pose back to teleopro -->
+  <path class="edge" d="M1080,152 L1080,200 L505,200 L505,154" marker-end="url(#arrow)"/>
+  <text class="mono" x="792" y="226" text-anchor="middle">robot_base_frame → robot_source_frame</text>
+  <text class="mono-muted" x="792" y="245" text-anchor="middle">e.g. base_link → tool0</text>
+  <text class="muted" x="792" y="266" text-anchor="middle">current end effector pose, where the target starts on engage</text>
+</svg>
