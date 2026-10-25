@@ -2,7 +2,7 @@
 
 # Teleopro
 
-**Teleop like a pro: any input device, any robot arm.**
+**Teleop Like a Pro: any input device, any robot arm.**
 
 [![PyPI](https://img.shields.io/pypi/v/teleopro-core?color=blue)](https://pypi.org/project/teleopro-core/)
 [![ROS 2 Jazzy](https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros)](https://docs.ros.org/en/jazzy/)
